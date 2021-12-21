@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- 指定一个dom -->
+        <div id="test1"></div>
+       
+        <!-- 引入核心库 -->
+        <script src="../js/react.development.js"></script>
+        <!-- 引入dom库 -->
+        <script src="../js/react-dom.development.js"></script>
+        <!-- 引入babel -->
+        <script src="../js/babel.min.js"></script>
+        <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+        <script src="../js/prop-types.js"></script>
+
+        <script type="text/babel">
+        // 通过 ref 可以在 jsx 中给标签打标识 作用类似于原生的id
+        // 通过 ref 中写入 createRef创建的ref容器，可以把节点放置在创建的容器中
+       
+        class Demo extends React.Component{
+            // React.createRef 可以创建一个存放 ref 的容器 可以接受到标签中定义的ref
+            // 但是这个接收的 ref 是每个标签独立接收的
+            myRef1 = React.createRef()
+            myRef2 = React.createRef()
+
+            render() {
+                return (
+                    <div>
+                        {/* ref定义的是 React.createRef() 创建出来的 ref 容器 */}
+                        <input ref={this.myRef1} type="text"  />
+                        <button onClick={this.getIpt1}>点击获取左侧输入框的值</button>
+                        <input ref={this.myRef2} onBlur={this.getIpt2} type="text"  />
+                    </div>
+                )
+            }
+            getIpt1 = ()=>{
+                console.log(this)
+                // 可以通过 this.myRef1 获取到定义的节点
+                alert(this.myRef1.current.value)
+            }
+            getIpt2= ()=>{
+                alert(this.myRef2.current.value)
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('test1'))
+        </script>
+</body>
+</html>

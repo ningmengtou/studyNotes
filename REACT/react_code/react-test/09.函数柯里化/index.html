@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test1"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+
+        class Login extends React.Component {
+            // 初始化 state 
+            state = {
+                username: '',
+                password: ''
+            }
+            // jsx 中的事件接收一个函数作为回调函数  即使函数是调用但是返回值是函数也是可以的
+            render() {
+                return (
+                    <form onSubmit={this.submit}>
+                        用户名：<input type="text" onChange={this.saveFrom('username')} />
+                        密码：<input type="password" onChange={this.saveFrom('password')} />
+                        <button>登录</button>
+                    </form>
+                )
+            }
+            // 通过 saveFrom 函数获取参数保存的值是 username 还是 password
+            saveFrom = (dataType) => {
+                // 返回一个函数作为 onChange 事件的回调函数
+                return (event) => {
+                    // 读取 dataType 使用 [] 读取 
+                    this.setState({
+                        [dataType]: event.target.value
+                    })
+                }
+            }
+
+            submit = (event) => {
+                event.preventDefault()
+                // 在表单提交时一同将 state 中的值一同提交
+                console.log(this.state)
+            }
+        }
+        ReactDOM.render(<Login />, document.getElementById('test1'))
+    </script>
+</body>
+
+</html>

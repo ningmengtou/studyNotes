@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test1"></div>
+    <div id="test2"></div>
+    <div id="test3"></div>
+
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        class Person extends React.Component {
+
+            // 通过 static 给类中添加静态属性 来对 props 做限制
+
+            // 对props属性的类型做出限制
+            static propTypes = {
+                name: PropTypes.string.isRequired,//name属性是必填的字符串类型
+                age: PropTypes.number,//age属性是数值类型
+                sex: PropTypes.string,//sex属性是字符串类型
+                demo: PropTypes.func//demo属性是函数类型
+            }
+
+            // 对props属性设置默认值
+            static defaultProps = {
+                age: 18, //默认为18
+                sex: '男'//默认为 男
+            }
+
+
+            render() {
+                const { name, age, sex } = this.props
+                return (
+                    <ul>
+                        <li onClick={this.props.demo}>姓名：{name}</li>
+                        <li>年龄：{age}</li>
+                        <li>性别：{sex}</li>
+                    </ul>
+                )
+            }
+        }
+
+
+        // 在组件标签中写入数据
+        ReactDOM.render(<Person name="张三" age={18} sex="男" />, document.getElementById('test1'))
+        let p = {
+            name: '王六',
+            age: 23,
+            sex: '男',
+            demo: demo
+        }
+
+        // 这里可以使用 {...p} 来把对象变量直接通过 props 传递
+        ReactDOM.render(<Person {...p} />, document.getElementById('test2'))
+        // ReactDOM.render(<Person name="赵五" age="30" sex="男"/>,document.getElementById('test3'))
+
+
+        function demo() {
+            console.log('speack')
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+     <!-- 指定一个dom -->
+     <div id="test"></div>
+
+     <!-- 引入核心库 -->
+     <script src="../js/react.development.js"></script>
+     <!-- 引入dom库 -->
+     <script src="../js/react-dom.development.js"></script>
+     <!-- 引入babel -->
+     <script src="../js/babel.min.js"></script>
+ 
+     <!-- 因为react是通过jsx写的  所以是type="text/babel -->
+     <script type="text/babel">
+     // 1.创建虚拟dom 值是标签不是字符串 不需要引号
+
+    const myid = 'title'
+    const myspan = 'hello,react'
+
+     const VDOM = (
+        <div>
+            <h1 id={myid}>
+                <span className="red">{myspan}</span>
+            </h1>    
+            <h2 style={{color:"orange",fontSize:"30px"}}>嘻嘻</h2>
+            <input type="text" />
+        </div>
+
+     )
+
+
+     // 2.渲染虚拟dom到页面上 ReactDOM是dom库返回的对象 render是渲染方法
+     // ReactDOM.render(虚拟dom,需要被渲染的dom)
+     ReactDOM.render(VDOM,document.querySelector('#test'))
+
+    //  jsx规则
+    // 1.定义VDOM时不需要写引号
+    // 2.jsx中使用js表达式需要使用 {} 来使用变量
+    // 3.jsx中使用css样式需要写 className 来指定类名
+    // 4.jsx中使用行内样式需要使用 {{}} 复杂的样式属性需要使用驼峰命名
+    // 5.jsx中只有一个根标签
+    // 6.jsx中的标签必须是闭合的
+    // 7.jsx中标签名小写会去找html中的标签,大写则找定义的组件
+     </script>
+</body>
+</html>

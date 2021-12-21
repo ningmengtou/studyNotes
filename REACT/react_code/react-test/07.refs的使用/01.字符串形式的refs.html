@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- 指定一个dom -->
+        <div id="test1"></div>
+       
+        <!-- 引入核心库 -->
+        <script src="../js/react.development.js"></script>
+        <!-- 引入dom库 -->
+        <script src="../js/react-dom.development.js"></script>
+        <!-- 引入babel -->
+        <script src="../js/babel.min.js"></script>
+        <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+        <script src="../js/prop-types.js"></script>
+
+        <script type="text/babel">
+        // 通过 ref 可以在 jsx 中给标签打标识 作用类似于原生的id
+        // 通过 this.refs 可以获取到所有ref打标识的标签
+        class Demo extends React.Component{
+            render() {
+                return (
+                    <div>
+                        <input ref="ipt1" type="text"  />
+                        <button onClick={this.getIpt1}>点击获取左侧输入框的值</button>
+                        <input ref="ipt2" onBlur={this.getIpt2} type="text"  />
+                    </div>
+                )
+            }
+            getIpt1 = ()=>{
+                const {ipt1} = this.refs
+                alert(ipt1.value)
+            }
+            getIpt2= ()=>{
+                const {ipt2} = this.refs
+                alert(ipt2.value)
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('test1'))
+        </script>
+</body>
+</html>

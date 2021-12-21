@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- 指定一个dom -->
+        <div id="test1"></div>
+       
+        <!-- 引入核心库 -->
+        <script src="../js/react.development.js"></script>
+        <!-- 引入dom库 -->
+        <script src="../js/react-dom.development.js"></script>
+        <!-- 引入babel -->
+        <script src="../js/babel.min.js"></script>
+        <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+        <script src="../js/prop-types.js"></script>
+
+        <script type="text/babel">
+        
+        // 内联写法的 回调ref 会出现在数据更新时调用两次回调函数 
+        // 第一次的参数是 null 第二次才是 节点
+        // 结果方法：把内联回调ref改写成 类中绑定的方法
+
+        class Demo extends React.Component{
+
+            state = {
+                isHot:true
+            }
+
+
+            render() {
+                return (
+                    <div>
+                        <div>今天天气很{this.state.isHot?'炎热':'凉快'}</div>
+                        {/* <input type="text" ref={c => {this.ipt1 = c;console.log('@',c)}} />*/}
+                        <input type="text" ref={this.bindIpt} />
+                        <br/>
+                        <br/>
+                        <button onClick={this.getIpt}>获取文本框的值</button>
+                        <button onClick={this.changeHot}>改变isHot</button>
+                    </div>
+                )
+            }
+            getIpt = ()=>{
+                alert(this.ipt1.value)
+            }
+            changeHot=()=>{
+                this.setState({
+                    isHot:!this.state.isHot
+                })
+            }
+            // 通过绑定 类方法结果内联ref回调 两次调用问题
+            bindIpt = (c)=>{
+                this.ipt1 = c;
+                console.log('@',c)
+            }
+          
+        }
+        
+        ReactDOM.render(<Demo/>,document.getElementById('test1'))
+        
+        
+        </script>
+</body>
+</html>

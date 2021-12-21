@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Weather extends React.Component {
+            // 构造函数调用几次？  1次 创建实例对象时创建
+            constructor(props) {
+                // 调用 super 执行父类的继承方法
+                super(props)
+
+                // 给 state 添加 isHot 属性 初始化状态
+                this.state = {
+                    isHot: false
+                }
+                // 解决 demo 中this指向问题
+                // 把实例中原型对象的 demo 函数通过 bind 改变 this 并且赋值给到实例对象的函数 demo
+                this.demo = this.demo.bind(this)
+
+            }
+
+            // render调用几次？ 1+n 次 首次渲染页面会调用一次 state属性修改了会调用
+            render() {
+                // 获取state中的isHot属性
+                const { isHot } = this.state
+                // 事件处理 react 把所有的原生事件 都改成了驼峰处理 
+                // 执行的回调函数不需要 () 直接调用 只需要写函数名就可以
+                // 这里的 this.demo 不是原型对象的函数 而是实例对象自己的函数
+          
+                return (
+                    <div onClick={this.demo}>今天天气{isHot ? '炎热' : '寒冷'}</div>
+                )
+            }
+
+            // demo调用几次？ 点击几次调几次
+            demo() {
+                // 由于 demo 函数是 onClick 的回调 不是实例对象调用的，不是直接调用
+                // 由于类中的函数默认开启严格模式 所以这里的this是undefined
+                console.log(this)
+                
+                this.setState({
+                    isHot:!this.state.isHot
+                })
+            }
+
+        }
+
+        ReactDOM.render(<Weather />, document.getElementById('test'))
+
+
+    </script>
+</body>
+
+</html>

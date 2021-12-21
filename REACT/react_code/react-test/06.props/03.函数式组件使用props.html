@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+
+    <div id="test2"></div>
+
+
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        // 定义函数式组件
+        function Person(props) {
+            // 接受 props 来获取参数
+            console.log(props)
+            const { name, age, sex } = props
+            return (
+                <ul>
+                    <li>姓名：{name}</li>
+                    <li>年龄：{age}</li>
+                    <li>性别：{sex}</li>
+                </ul>
+            )
+        }
+
+        // 在函数式组件中对 props 直接添加 Person 属性
+
+        Person.propTypes = {
+            name: PropTypes.string.isRequired,//name属性是必填的字符串类型
+            age: PropTypes.number,//age属性是数值类型
+            sex: PropTypes.string,//sex属性是字符串类型
+            demo: PropTypes.func//demo属性是函数类型
+        }
+
+        // 对props属性设置默认值
+        Person.defaultProps = {
+            age: 18, //默认为18
+            sex: '男'//默认为 男
+        }
+
+        console.log(Person.propTypes, 1)
+
+        // 在组件标签中写入数据
+
+        let p = {
+            name: '王六',
+            age: 23,
+            sex: '男'
+        }
+
+        // 这里可以使用 {...p} 来把对象变量直接通过 props 传递
+        ReactDOM.render(<Person {...p} />, document.getElementById('test2'))
+
+    </script>
+
+
+</body>
+
+</html>

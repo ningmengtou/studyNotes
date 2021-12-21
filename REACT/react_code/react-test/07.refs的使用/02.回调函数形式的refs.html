@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <!-- 指定一个dom -->
+        <div id="test1"></div>
+       
+        <!-- 引入核心库 -->
+        <script src="../js/react.development.js"></script>
+        <!-- 引入dom库 -->
+        <script src="../js/react-dom.development.js"></script>
+        <!-- 引入babel -->
+        <script src="../js/babel.min.js"></script>
+        <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+        <script src="../js/prop-types.js"></script>
+
+        <script type="text/babel">
+        // 通过 ref 可以在 jsx 中给标签打标识 作用类似于原生的id
+        // 通过 ref 中写入回调函数，函数中的参数就是这个节点 通过赋值给到实例本身的变量上
+        // React 会自动调用 ref 定义的回调函数
+        class Demo extends React.Component{
+            render() {
+                return (
+                    <div>
+                        <input ref={c=>this.ipt1 = c} type="text"  />
+                        <button onClick={this.getIpt1}>点击获取左侧输入框的值</button>
+                        <input ref={c=>this.ipt2 = c} onBlur={this.getIpt2} type="text"  />
+                    </div>
+                )
+            }
+            getIpt1 = ()=>{
+                // 在实例中获取到 节点
+                const {ipt1} = this
+                console.log(this)
+                alert(ipt1.value)
+            }
+            getIpt2= ()=>{
+                const {ipt2} = this
+                alert(ipt2.value)
+            }
+        }
+        ReactDOM.render(<Demo/>,document.getElementById('test1'))
+        </script>
+</body>
+</html>

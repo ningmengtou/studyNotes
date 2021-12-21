@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test1"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+
+        // 受控组件是指把组件中的值在受到改变时存放在 state 中
+        // 优点：可以省略很多 ref 
+        class Login extends React.Component {
+
+            // 初始化 state 
+            state = {
+                username:'',
+                password:''
+            }
+
+            render() {
+                return (
+                    <form onSubmit={this.submit}>
+                        用户名：<input type="text" onChange={this.saveUsername} />
+                        密码：<input type="password" onChange={this.savePassword}/>
+                        <button>登录</button>
+
+                    </form>
+                )
+            }
+            // 通过 onChange 事件获取到控件的值并且保存到 state 中
+            saveUsername = (event)=>{
+                this.setState({
+                    username:event.target.value
+                })
+            }
+            savePassword =(event)=>{
+                this.setState({
+                    password:event.target.value
+                })
+            }
+            submit = (event)=>{
+                event.preventDefault()
+                // 在表单提交时一同将 state 中的值一同提交
+                console.log(this.state)
+            }
+        }
+        ReactDOM.render(<Login />, document.getElementById('test1'))
+    </script>
+</body>
+
+</html>

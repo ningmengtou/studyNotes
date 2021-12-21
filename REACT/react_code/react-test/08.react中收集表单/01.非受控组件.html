@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test1"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        class Login extends React.Component {
+            render() {
+                return (
+                    <form onSubmit={this.submit}>
+                        用户名：<input type="text" name="username" ref={c=> this.username = c}/>
+                        密码：<input type="password" name="password" ref={c=> this.password = c}/>
+                        <button>登录</button>
+                    </form>
+                )
+            }
+            submit = (event)=>{
+                // 事件处理回调函数中有个默认参数 event 可以获取到节点信息
+                // event.preventDefault() 可以阻止事件默认事件
+                event.preventDefault()
+                const {username,password} = this
+             
+                alert(username.value+'-----'+password.value)
+            }
+        }
+        ReactDOM.render(<Login />, document.getElementById('test1'))
+    </script>
+</body>
+
+</html>

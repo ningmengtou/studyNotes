@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+     <!-- 指定一个dom -->
+     <div id="test"></div>
+
+     <!-- 引入核心库 -->
+     <script src="../js/react.development.js"></script>
+     <!-- 引入dom库 -->
+     <script src="../js/react-dom.development.js"></script>
+     <!-- 引入babel -->
+     <script src="../js/babel.min.js"></script>
+ 
+     <!-- 因为react是通过jsx写的  所以是type="text/babel -->
+     <script type="text/babel">
+
+    //  注意:jsx中只能写js表达式而不是js语句
+    // jsx中对数组的处理是自动遍历
+
+     const arr = ['angular','react','vue']
+
+     const VDOM = (
+        <div>
+            <h1>前端js框架列表</h1>
+            <ul>
+                {
+                    arr.map(item => {
+                        return <li key={item}>{item}</li>
+                    })
+                }
+            </ul>
+        </div>
+
+     )
+
+     ReactDOM.render(VDOM,document.querySelector('#test'))
+     </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        class Weather extends React.Component {
+            // 初始化状态可以直接在类中定义
+            state = {
+                isHot: false
+            }
+
+            render() {
+                const { isHot } = this.state
+                return (
+                    <div onClick={this.demo}>今天天气{isHot ? '炎热' : '寒冷'}</div>
+                )
+            }
+
+            // 自定义方法需要使用赋值语句 把方法直接放置在实例对象自身
+            // 再通过箭头函数跳转 this 指向到实例对象
+            demo = () => {
+                this.setState({
+                    isHot: !this.state.isHot
+                })
+            }
+
+        }
+
+        ReactDOM.render(<Weather />, document.getElementById('test'))
+    </script>
+</body>
+
+</html>

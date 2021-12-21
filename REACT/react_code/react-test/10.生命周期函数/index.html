@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test1"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+    <script src="../js/prop-types.js"></script>
+
+    <script type="text/babel">
+        class Life extends React.Component {
+            // 初始化 state 定义透明度
+            state = {
+                opacity: 1
+            }
+
+            // 组件挂载之前和状态更新之后都会调用
+            render() {
+                console.log('@')
+                return (
+                    <div>
+                        <h2 style={{ opacity: this.state.opacity }}>我在学习react</h2>
+                        <button onClick={this.noStudy}>不学了</button>
+                    </div>
+                )
+            }
+
+            // 组件挂载完成 只会在第一个 render执行之后执行一次
+            componentDidMount() {
+                // 定时器 2s 内透明度由1到0
+                this.timer = setInterval(() => {
+                    let { opacity } = this.state
+                    opacity -= 0.1
+                    if (opacity <= 0) {
+                        opacity = 1
+                    }
+                    this.setState({ opacity })
+                }, 200)
+            }
+
+            // 组件卸载之前
+            componentWillUnmount() {
+                clearInterval(this.timer)
+            }
+
+            // 卸载组件
+            noStudy = () => {
+                ReactDOM.unmountComponentAtNode(document.getElementById('test1'))
+            }
+        }
+
+        ReactDOM.render(<Life />, document.getElementById('test1'))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- 指定一个dom -->
+    <div id="test"></div>
+
+    <!-- 引入核心库 -->
+    <script src="../js/react.development.js"></script>
+    <!-- 引入dom库 -->
+    <script src="../js/react-dom.development.js"></script>
+    <!-- 引入babel -->
+    <script src="../js/babel.min.js"></script>
+
+    <script type="text/babel">
+        // 定义类式组件
+        // 自定义的类需要继承 React.Component 创建组件实例
+        class Mycomponent extends React.Component {
+
+            // 需要执行 render 方法 返回一个 jsx 代码来渲染组件
+            // 这里 render 方法是在实例对象的原型对象上的
+            render() {
+                // 这里的 this 指向 组件实例对象 Mycomponent
+                console.log(this instanceof Mycomponent) // true
+                return (
+                    <div>
+                        <p>类式组件创建</p>
+                        <span>0000</span>
+                    </div>
+                )
+            }
+        }
+
+        // 这里的 组件名需要和类名一致 都是需要首字母大写
+        ReactDOM.render(<Mycomponent />, document.getElementById('test'))
+        // react是如何实现函数式组件的?
+        // 1.在react解析组件标签时,找到了 MyComponent 组件
+        // 2.发现组件是类定义的,随后通过 new 创建一个实例对象,把虚拟dom转成真实dom渲染到页面上
+    </script>
+</body>
+
+</html>
