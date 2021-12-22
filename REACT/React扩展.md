@@ -322,3 +322,16 @@ npm install --save-dev redux-devtools-extension
 <p dangerouslySetInnerHTML={{__html:data.price+'元/月'}}></p>
 ```
 
+##### classnames的使用
+
+```react
+<Button className={classnames({
+    //这里可以根据各属性动态添加，如果属性值为true则为其添加该类名，如果值为false，则不添加。这样达到了动态添加class的目的
+      base: true,
+      inProgress: this.props.store.submissionInProgress,
+      error: this.props.store.errorOccurred,
+      disabled: this.props.form.valid,
+    })}>
+<Button/>
+```
+
