@@ -43,6 +43,7 @@ rafce 箭头函数组件
 
 ```js
 //在 src 文件中添加 setupProxy.js 文件(文件名是唯一的)
+//修改了配置文件记住要重新启动项目
 const proxy = require('http-proxy-middleware')
 
 module.exports = function(app) {

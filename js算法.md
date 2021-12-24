@@ -70,3 +70,27 @@ const preloadImage = function (path) {
 };
 ```
 
+##### 随机生成手机号
+
+```js
+        function getMoble() {
+            var prefixArray = new Array("130", "131", "132", "133", "135", "137", "138", "170", "187", "189");
+            var i = parseInt(10 * Math.random());
+            var prefix = prefixArray[i];
+            for (var j = 0; j < 8; j++) {
+            prefix = prefix + Math.floor(Math.random() * 10);
+            }
+            return prefix;
+        }
+```
+
+##### 星号显示手机号码
+
+```js
+       //138******19
+       function hidePhone(tel) {
+            var reg = /^(\d{3})\d{6}(\d{2})$/;
+            return tel.replace(reg, "$1******$2");
+        }
+```
+

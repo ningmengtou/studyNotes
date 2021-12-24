@@ -229,7 +229,7 @@ jarsigner -verbose -keystore shangban.jks -signedjar OppoSignVerify_signed.apk O
 
 ```
 
-uniapp取消授权弹窗
+##### uniapp取消授权弹窗
 
 ```
 "android" : {
@@ -243,13 +243,13 @@ uniapp取消授权弹窗
 				},
 ```
 
-uview引入报错问题
+##### uview引入报错问题
 
 ```
 import uView from '@/uni_modules/uview-ui'
 ```
 
-uniapp忽略版本的提示弹窗
+##### uniapp忽略版本的提示弹窗
 
 ```
     "app-plus" : {
@@ -257,5 +257,12 @@ uniapp忽略版本的提示弹窗
 		    "ignoreVersion" : true //true表示忽略版本检查提示框，HBuilderX1.9.0及以上版本支持  
 		}
 	}
+```
+
+##### 支付宝小程序图片加载问题
+
+```js
+//路径添加 https://images.weserv.nl/?url=
+<image  :src="'https://images.weserv.nl/?url='+detailJson.picture" mode="widthFix"></image>
 ```
 
