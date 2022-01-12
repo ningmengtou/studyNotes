@@ -266,3 +266,14 @@ import uView from '@/uni_modules/uview-ui'
 <image  :src="'https://images.weserv.nl/?url='+detailJson.picture" mode="widthFix"></image>
 ```
 
+##### uniapp中引入字体
+
+```
+@font-face {
+  font-family: 'myFont';
+  src: url('./utils/shuzi.ttf') format('truetype');
+  font-weight: 600;
+  font-style: normal;
+}
+```
+
