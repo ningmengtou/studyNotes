@@ -277,3 +277,84 @@ import uView from '@/uni_modules/uview-ui'
 }
 ```
 
+##### 微信授权代码
+
+```js
+//e是点击事件参数 
+wx.login({
+    success: async(res)=>{
+            let phone = await this.getWeiPhone(e,res.code)
+            if(phone.length === 11) {
+            this.isShowLogin = true; //个人中心页面单独拥有
+            this.myPhone = phone;
+        }
+    }
+})
+	
+	// 微信小程序授权登录获取手机号的方法封装
+	Vue.prototype.getWeiPhone = function(e, code) {
+	  if (e.detail.errMsg != 'getPhoneNumber:ok') {
+	    return false
+	  }
+	  let appId = 'wx84d8b1d8054d9813'
+	  let secret = 'b9516b317abdd8efb1ac73d8e81e3156'
+	  let encryptedData = e.detail.encryptedData
+	  let iv = e.detail.iv
+	  return new Promise((resolve, reject) => {
+	    wx.request({
+	      url: `https://api.weixin.qq.com/sns/jscode2session?appid=${appId}&secret=${secret}&js_code=${code}&grant_type=authorization_code`,
+	      method: 'GET',
+	      success: result => {
+	        console.log(result)
+	        var pc = new WXBizDataCrypt(appId, result.data.session_key)
+	        var data = pc.decryptData(encryptedData, iv)
+	        uni.setStorageSync('userPhone', data.phoneNumber)
+			this.$store.commit('changeAuth',true)
+	        resolve(data.phoneNumber)
+	      }
+	    })
+		
+	  })
+	}
+```
+
+##### 支付宝授权代码
+
+```js
+      let phoneNumber = await this.authorizePhone();
+
+      if (phoneNumber.length == 11) {
+        this.isLogin = true;
+      }
+    
+    // 支付宝授权登录
+    Vue.prototype.authorizePhone = function() {
+      return new Promise((resolve, reject) => {
+        my.getPhoneNumber({
+          success: (res) => {
+            let encryptedData = JSON.parse(res.response).response;
+            my.request({
+              url: 'https://api.wangzhandb.com/aop/alipayTel.php',
+              data: {
+                'response': encryptedData
+              },
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+              },
+              success: result => {
+                if (result.data.code == '10000') {
+                  uni.setStorageSync('phoneNum', result.data.mobile); //把手机号存入缓存中
+                  resolve(result.data.mobile)
+                }
+              }
+            });
+          },
+          fail: (res) => {
+            reject('getPhoneNumber_fail')
+          },
+        });
+      })
+    }
+```
+
