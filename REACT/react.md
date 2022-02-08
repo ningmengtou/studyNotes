@@ -41,7 +41,7 @@
     const myid = 'title'
     const myspan = 'hello,react'
 
-     const VDOM = (
+    const VDOM = (
         <div>
             <h1 id={myid}>
                 <span className="red">{myspan}</span>
@@ -49,7 +49,6 @@
             <h2 style={{color:"orange",fontSize:"30px"}}>嘻嘻</h2>
             <input type="text" />
         </div>
-
      )
 
      // 2.渲染虚拟dom到页面上 ReactDOM是dom库返回的对象 render是渲染方法
@@ -89,9 +88,8 @@
                 }
             </ul>
         </div>
-
      )
-
+     
      ReactDOM.render(VDOM,document.querySelector('#test'))
      </script>
 ```

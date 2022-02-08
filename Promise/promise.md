@@ -33,7 +33,7 @@ new Promise((resolve,reject)=>{
     //成功结果的回调函数是onResolved 
     console.log('onResolved()',value)
 }).catch(reason=>{
-    //成功结果的回调函数是onRejected
+    //失败结果的回调函数是onRejected
     console.log('onRejected()'.reason)
 })
 ```
@@ -46,7 +46,7 @@ const p1 = new Promise((resolve,reject)=>{
 	resolve(1)
 })
 const p2 = Promise.resolve(1)
-//p1 p2 的值等价
+//p1 p2 的值等价  但是是不同的实例对象
 ```
 
 ##### Promise.reject()的使用
@@ -57,7 +57,7 @@ const p1 = new Promise((resolve,reject)=>{
 	reject(1)
 })
 const p2 = Promise.reject(1)
-//p1 p2 的值等价
+//p1 p2 的值等价  但是是不同的实例对象
 ```
 
 ##### Promise.all()使用
@@ -92,7 +92,7 @@ const p2 = Promise.resolve(1)
 const p3 = Promise.reject(2)
 
 //参数是一个数组，每个元素都是promise实例对象
-//数组中那个promise元素有结果就直接返回那个(不论是成功还是失败)
+//数组中那个promise元素最先有结果就直接返回那个(不论是成功还是失败)
 const pRace = Promise.race([p1,p2,p3])
 pRace.then(
     value=>{
@@ -108,11 +108,9 @@ pRace.then(
 
 ```
 1.resolve() 把状态改为resolved
-2.reject() 把状态改为rejected
-3.抛出异常 把状态改为rejected
+2.reject()  把状态改为rejected
+3.抛出异常   把状态改为rejected
 ```
-
-
 
 ##### promise中是先指定的状态还是先指定的回调函数？
 
@@ -140,11 +138,11 @@ new Promise((resolve,reject)=>{
 ##### promise.then()返回的新promise对象的结果状态由什么决定？
 
 ```js
-//答案： 由.then()执行的回调函数的结果决定   结果由 return 返回
+//答案： 由.then()执行的回调函数的结果决定   结果由 return 返回或者抛出错误
 //1.如果抛出异常，结果状态为rejected，reason为异常结果
 //2.如果返回非promise任意值，结果状态为resolved，value为任意值
 //3.如果返回新的promise对象，此promise的结果就是新promise的结果
-// 4.如果什么都没有返回，结果状态为resolved，value为undefined
+//4.如果什么都没有返回，结果状态为resolved，value为undefined
 
 new Promise((resolve,reject)=>{
     resolve(1)
@@ -234,7 +232,6 @@ await 必须写在 async 中
 ```
 宏队列：dom事件回调，ajax回调，定时器回调
 微队列：promise回调，mutation回调
-
 
 js执行会区别这两个队列
 1.js引擎首先会先执行完所有的初始化同步任务代码

@@ -358,3 +358,19 @@ wx.login({
     }
 ```
 
+##### uniapp申请ios证书
+
+```
+https://ask.dcloud.net.cn/article/152
+```
+
+##### 机关tdk网址
+
+```
+在线版的：JG-JCore_1.0.1
+https://ext.dcloud.net.cn/plugin?id=4028
+
+在线版的：JG-JVerification_2.0.8
+https://ext.dcloud.net.cn/plugin?id=1356
+```
+
