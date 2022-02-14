@@ -39,7 +39,7 @@ class B extends Component {
         return (
             <div className="b">
                 <h2>我是B组件</h2>
-                {/* this.props.nam 接收到 A 组件的 name 参数 */}
+                {/* this.props.name 接收到 A 组件的 name 参数 */}
                 <h2>parent的名字是{this.props.name}</h2>
             </div>
         )

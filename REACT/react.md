@@ -1,6 +1,6 @@
 ##### react基本使用
 
-```js
+```jsx
     <!-- 指定一个dom -->
     <div id="test"></div>
 
@@ -97,7 +97,6 @@
 ##### 函数方式定义组件
 
 ```js
-
     <script type="text/babel">
     // 定义函数式组件
     function MyComponent() {
@@ -230,8 +229,8 @@
 ##### props的基本使用
 
 ```js
-       <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
-    <script src="../js/prop-types.js"></script>
+   <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+   <script src="../js/prop-types.js"></script>
    
    <script type="text/babel">
         class Person extends React.Component{
@@ -273,7 +272,7 @@
 
         // 这里可以使用 {...p} 来把对象变量直接通过 props 传递
         ReactDOM.render(<Person {...p} />,document.getElementById('test2'))
-        // ReactDOM.render(<Person name="赵五" age="30" sex="男"/>,document.getElementById('test3'))
+// ReactDOM.render(<Person name="赵五" age="30" sex="男"/>,document.getElementById('test3'))
     
 
         function demo() {
@@ -285,8 +284,8 @@
 ##### props的简写形式
 
 ```js
-    <!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
-    <script src="../js/prop-types.js"></script>
+<!-- 引入对props做限制的js 这样会多出一个 PropTypes 的对象-->
+<script src="../js/prop-types.js"></script>
 
 <script type="text/babel">
         class Person extends React.Component {

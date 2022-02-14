@@ -1,3 +1,4 @@
+// 等待图片加载
 export const imgLoad = function (path) {
   return new Promise(function (resolve, reject) {
     const image = new Image();

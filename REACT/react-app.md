@@ -333,7 +333,7 @@ return (
 
 ##### 通过 search来传递参数
 
-```tex
+```html
 //Message组件
         return (
             <div>
@@ -506,9 +506,9 @@ export default withRouter(Header)
 ```js
 //1.npm install redux
 //2.创建文件
-/redux
-  /store.js
-  /count_reducer.js
+./redux
+    ./store.js
+    ./count_reducer.js
 //3. store.js
 // 引入 createStore 用于创建 store 
 import { createStore } from "redux";

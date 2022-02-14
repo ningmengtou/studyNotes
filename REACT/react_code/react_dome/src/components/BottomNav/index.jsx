@@ -6,6 +6,7 @@ const BottomNav = () => {
     return (
         <div className="nav-footer">
             <ul className="clear-fix">
+                {/* {exact是为了精准匹配只有to中的url和实际url完全一致的时候才会渲染路由页面} */}
                 <li>
                     <NavLink exact to="/">
                         <i className="iconfont icon-home"></i>

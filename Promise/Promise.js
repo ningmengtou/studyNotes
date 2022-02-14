@@ -13,6 +13,7 @@
     const REJECTED = 'rejected'
 
 
+
 function Primose(excutor) {
     // 在执行resolve和reject时this会指向window 所以要存储this
     const self = this
