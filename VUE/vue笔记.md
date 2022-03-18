@@ -1066,3 +1066,57 @@ module.exports = {
    3. 应用部署上线时需要后端人员支持，解决刷新页面服务端404的问题。
 	
 	 
+
+##### Vue中 .sync 的使用场景
+
+```vue
+父组件
+<template>
+    <div>
+        <input type="button"
+               value="我是父组件中的按钮"
+               @click="show">
+        <child :isShow.sync="isShow" v-show="isShow"/>
+    </div>
+</template>
+<script>
+    import child from "@/components/child"
+    export default {
+        data() {
+            return {
+                isShow:false
+            }
+        },
+        components:{
+            child
+        },
+        methods:{
+            show(){
+                this.isShow=true;
+            }
+        }
+    }
+</script>
+
+
+子组件
+<template>
+    <div>
+         我是一个子组件，我在红色的海洋里！
+        <input type="button" value="点我隐身" @click="upIsShow">
+    </div>
+</template>
+<script>
+    export default {
+        methods:{
+            upIsShow(){
+                this.$emit("update:isShow",false);
+            }
+        }
+    }
+</script>
+
+注释 单纯的在子组件当中修改父组件的某个数据时，建议使用sync
+sync 就是子组件修改父组件修改props值得语法糖
+```
+
