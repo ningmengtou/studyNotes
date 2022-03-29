@@ -109,3 +109,42 @@ function GetDateStr(AddDayCount) {
 };
 ```
 
+##### 隐藏隐私信息
+
+```js
+//str 原始字符串 frontLen 前面需要保留的字符 endLen 后面需要变成*的字符
+hidden(str,frontLen,endLen) { 
+           var len = str.length-frontLen-endLen;
+           var xing = '';
+           for (var i=0;i<len;i++) {
+           xing+='*';
+          }
+           return str.substring(0,frontLen)+xing+str.substring(str.length-endLen);
+        }
+```
+
+##### 时间戳转换
+
+```
+//时间戳转换方法    date:时间戳数字
+function formatDate(date) {
+  var date = new Date(date);
+  var YY = date.getFullYear() + '-';
+  var MM = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1) + '-';
+  var DD = (date.getDate() < 10 ? '0' + (date.getDate()) : date.getDate());
+  var hh = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()) + ':';
+  var mm = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()) + ':';
+  var ss = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds());
+  return YY + MM + DD +" "+hh + mm + ss;
+}
+```
+
+##### 数值精度问题
+
+```js
+// num 数值参数  precision 精度
+function strip(num, precision = 12) {
+  return +parseFloat(num.toPrecision(precision));
+}
+```
+
