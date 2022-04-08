@@ -125,7 +125,7 @@ hidden(str,frontLen,endLen) {
 
 ##### 时间戳转换
 
-```
+```js
 //时间戳转换方法    date:时间戳数字
 function formatDate(date) {
   var date = new Date(date);
