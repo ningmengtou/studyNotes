@@ -68,7 +68,7 @@ const p1 = new Promise((resolve,reject)=>{
 })
 const p2 = Promise.resolve(1)
 
-//参数是一个数组，每个元素都是promise实例对象
+//参数是一个数组，每个元素都是promise实例对象,也可以不是
 //数组中每个元素都是成功状态才返回成功，有一个元素失败则失败
 const pAll = Promise.all([p1,p2])
 pAll.then(
@@ -91,7 +91,7 @@ const p1 = new Promise((resolve,reject)=>{
 const p2 = Promise.resolve(1)
 const p3 = Promise.reject(2)
 
-//参数是一个数组，每个元素都是promise实例对象
+//参数是一个数组，每个元素都是promise实例对象,也可以不是
 //数组中那个promise元素最先有结果就直接返回那个(不论是成功还是失败)
 const pRace = Promise.race([p1,p2,p3])
 pRace.then(

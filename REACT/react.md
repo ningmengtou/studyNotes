@@ -68,7 +68,7 @@
 
 ##### jsx练习
 
-```js
+```jsx
 <!-- 因为react是通过jsx写的  所以是type="text/babel -->
      <script type="text/babel">
 
@@ -96,7 +96,7 @@
 
 ##### 函数方式定义组件
 
-```js
+```jsx
     <script type="text/babel">
     // 定义函数式组件
     function MyComponent() {
@@ -272,7 +272,7 @@
 
         // 这里可以使用 {...p} 来把对象变量直接通过 props 传递
         ReactDOM.render(<Person {...p} />,document.getElementById('test2'))
-// ReactDOM.render(<Person name="赵五" age="30" sex="男"/>,document.getElementById('test3'))
+	    // ReactDOM.render(<Person name="赵五" age="30" sex="男"/>,document.getElementById('test3'))
     
 
         function demo() {
