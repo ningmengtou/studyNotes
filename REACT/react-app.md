@@ -102,7 +102,7 @@ componentWillUnmount() {
 
 ##### 多重三元表达式判断
 
-```js
+```jsx
 const { users, isFirst, isLoading, err } = this.state
         return (
             <div className="row">
@@ -333,7 +333,7 @@ return (
 
 ##### 通过 search来传递参数
 
-```html
+```jsx
 //Message组件
         return (
             <div>
@@ -423,7 +423,7 @@ return (
 
 ##### 编程式导航跳转
 
-```js
+```jsx
     // replace编程式跳转
     replaceShow = (id, title) => {、
     	//parmas参数
@@ -447,7 +447,7 @@ return (
 
 ##### withRouter 的使用
 
-```js
+```jsx
 //作用：让一般组件拥有路由组件的api  withRouter() 返回的是一个新的组件实例
 import { withRouter } from 'react-router'
 class Header extends Component {
@@ -507,8 +507,8 @@ export default withRouter(Header)
 //1.npm install redux
 //2.创建文件
 ./redux
-    ./store.js
-    ./count_reducer.js
+	./store.js
+	./count_reducer.js
 //3. store.js
 // 引入 createStore 用于创建 store 
 import { createStore } from "redux";
@@ -522,7 +522,7 @@ export default createStore(countReducer)
 // reducer 本质就是一个函数,有两个参数分别是:之前的状态(preState) 动作对象(action)
 // 定义初始值
 const initState = 0
-// 第一个执行 reducer 时是定义初始状态 preState 是undefined 
+// 第一个执行 reducer 时是定义初始状态 preState 是undefined
 // 通过默认参数给到最开始的值为 0
 export default function countReducer(preState = initState,action) {
     // 结构获取方法名(type)和数据(data)
@@ -599,7 +599,7 @@ export default createStore(countReducer,applyMiddleware(thunk))
 
 ##### react-redux的基本使用
 
-```js
+```jsx
 1.明确两个概念
 	ui组件中不能使用任何关于redux的api，只负责呈现页面的交互
 	容器组件负责和redux通信，把结果状态传递给ui组件，和ui组件父子组件关系
