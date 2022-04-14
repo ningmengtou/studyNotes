@@ -133,7 +133,7 @@ beforeDestory() {
 
 ##### cli中使用动画
 
-```js
+```vue
 <template>
   <div>
     <button @click="isShow = !isShow">显示隐藏</button>
