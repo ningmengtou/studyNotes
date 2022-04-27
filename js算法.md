@@ -160,3 +160,16 @@ hTMLEncode(html) {
  }
 ```
 
+##### 类型检测
+
+```js
+let type = function(data) {
+            var toString = Object.prototype.toString;
+            var dataType = toString
+                    .call(data)
+                    .replace(/\[object\s(.+)\]/, "$1")
+                    .toLowerCase()
+            return dataType
+        };
+```
+
