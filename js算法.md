@@ -148,28 +148,25 @@ function strip(num, precision = 12) {
 }
 ```
 
-##### 转义
-
-```js
-hTMLEncode(html) {
-            var temp = document.createElement("div");
-            (temp.textContent != null) ? (temp.textContent = html) : (temp.innerText = html);
-            var output = temp.innerHTML;
-            temp = null;
-            return output;
- }
-```
-
 ##### 类型检测
 
 ```js
-let type = function(data) {
-            var toString = Object.prototype.toString;
-            var dataType = toString
-                    .call(data)
-                    .replace(/\[object\s(.+)\]/, "$1")
-                    .toLowerCase()
-            return dataType
-        };
+function DataType(tgt, type) {
+    const dataType = Object.prototype.toString.call(tgt).replace(/[object (\w+)]/, "$1").toLowerCase();    
+    return type ? dataType === type : dataType;
+}
+DataType("test"); // "string"
+DataType(20220314); // "number"
+DataType(true); // "boolean"
+DataType([], "array"); // true
+DataType({}, "array"); // false
+
+```
+
+##### 删除对象无用属性
+
+```js
+const obj = { a: 0, b: 1, c: 2 }; 
+const { a, ...rest } = obj;// rest => { b: 1, c: 2 }
 ```
 

@@ -226,12 +226,11 @@ methods：{
 
 ```js
 jarsigner -verbose -keystore shangban.jks -signedjar OppoSignVerify_signed.apk OppoSignVerify.apk shangban(这里是别名不需要后缀)
-
 ```
 
 ##### uniapp取消授权弹窗
 
-```
+```js
 "android" : {
 				"permissionExternalStorage" : {
 				    "request" : "none",
@@ -251,7 +250,7 @@ import uView from '@/uni_modules/uview-ui'
 
 ##### uniapp忽略版本的提示弹窗
 
-```
+```js
     "app-plus" : {
 		"compatible" : {
 		    "ignoreVersion" : true //true表示忽略版本检查提示框，HBuilderX1.9.0及以上版本支持  
@@ -268,7 +267,7 @@ import uView from '@/uni_modules/uview-ui'
 
 ##### uniapp中引入字体
 
-```
+```js
 @font-face {
   font-family: 'myFont';
   src: url('./utils/shuzi.ttf') format('truetype');
