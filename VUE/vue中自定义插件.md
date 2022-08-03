@@ -6,7 +6,7 @@
 import Toast from "./Toast";
 const obj = {};
  
-obj.install = function(Vue) {
+obj.install = function(Vue,store) {
   //1 创建组件构造器
   const toastContrutor = Vue.extend(Toast);
   //2 new的方式，根据组件构造器，可以创建一个组件对象
@@ -15,6 +15,8 @@ obj.install = function(Vue) {
   toast.$mount(document.createElement("div"));
   //4 toast.$el对应的就是上面挂载的div
   document.body.appendChild(toast.$el);
+  //为了让插件也可以使用 vuex 可以在插件上配置一下  
+  toast.$store = store
   //5装入vue原型
   Vue.prototype.$toast = toast;
 };
@@ -87,7 +89,7 @@ import toast from 'components/common/toast'
 Vue.config.productionTip = false;
 Vue.prototype.$bus = new Vue();
 //使用自定义组件
-Vue.use(toast)
+Vue.use(toast,store)
  
 new Vue({
   router,
