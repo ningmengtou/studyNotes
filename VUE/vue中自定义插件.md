@@ -29,7 +29,7 @@ export default obj;
 import Toast from "./Toast";
 import {createApp} from 'vue'
 
-const obg = {}
+const obj = {}
 
 obj.install = function(app) {
   //1 实例化并且绑定组件
