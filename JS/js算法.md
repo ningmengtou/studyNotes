@@ -170,3 +170,25 @@ const obj = { a: 0, b: 1, c: 2 };
 const { a, ...rest } = obj;// rest => { b: 1, c: 2 }
 ```
 
+##### 判断环境
+
+```js
+//判断是否为微信环境
+export function isWeixinClient() {
+	var ua = navigator.userAgent.toLowerCase();
+	if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		//这是微信环境
+		return true;
+	} else {
+		//这是非微信环境
+		return false;
+	}
+}
+
+//判断是否为安卓环境
+export function isAndroid() {
+	let u = navigator.userAgent;
+	return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+}
+```
+
