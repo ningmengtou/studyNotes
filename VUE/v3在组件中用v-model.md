@@ -11,7 +11,7 @@
 const props = defineProps({
     myvalue:String
 })
-const emits = defineEmits(["input"])
+const emits = defineEmits(["update:myvalue"])
 const changeVal = ()=>{
     //自定义事件必须是 update: 加上更改的值才能实现更改父组件的值
     emits("update:myvalue",'000')
