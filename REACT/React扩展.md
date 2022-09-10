@@ -335,3 +335,108 @@ npm install --save-dev redux-devtools-extension
 <Button/>
 ```
 
+##### Portal   实现创建dom在根节点外部
+
+```react
+import React from 'react'
+import { createPortal } from 'react-dom'
+import './dialog.css'
+
+export default function Dialog() {
+    //createPortal 用于创建节点并且指定节点位置
+    //参数一是节点   参数二是节点位置
+    return createPortal(<div className='dialog'>
+        <div className='test'>我是弹窗</div>
+    </div>,document.body)
+}
+```
+
+##### 组件懒加载   需要配合 Suspense 一同使用  在组件没加载出来的时候显示等待信息
+
+```react
+import React, { useState ,Suspense} from 'react'
+// import Nowplaying from './components/Nowplaying'
+// import Comingsoon from './components/Comingsoon'
+const Nowplaying = React.lazy(()=>import("./components/Nowplaying"))
+const Comingsoon = React.lazy(()=>import("./components/Comingsoon"))
+export default function App() {
+    const [type,setType] = useState(false)
+  return (
+    <div>
+        <button onClick={()=>{
+            setType(!type)
+        }}>切换组件</button>
+   		{/*fallback 中一定要有内容*/}
+        <Suspense fallback={<div>加载中...</div>}>
+            {
+                type ? <Comingsoon/> : <Nowplaying />
+            }
+        </Suspense>
+    </div>
+  )
+}
+
+```
+
+##### forwardRef   引用传递让父组件更好的控制子组件
+
+```react
+import React, { forwardRef, useRef } from 'react'
+export default function App() {
+  const iptRef = useRef(null)
+  return (
+    <div>
+      <button onClick={() => {
+        console.log(iptRef);
+        // 实现更改input的值和获取焦点
+        iptRef.current.value = ''
+        iptRef.current.focus()
+      }}>获取ipt</button>
+      {/* 父组件定义的 iptRef 直接定义给子组件 */}
+      <Child ref={iptRef} />
+    </div>
+  )
+}
+
+// forwardRef 可以实现引用传递让父组件方便的控制子组件的节点
+// 参数 ref 就是父组件传递的 iptRef
+const Child = forwardRef((props, ref) => {
+  return (
+    // 绑定 ref 
+    <input type="text" ref={ref} defaultValue="111111" />
+  )
+})
+```
+
+##### memo  用于优化函数组件
+
+```react
+import React, { memo, useState } from 'react'
+
+export default function App() {
+    const [age, setAge] = useState(10)
+    const [title, setTitle] = useState('xixi')
+    return (
+        <div>
+            <div>我的年龄是{age}</div>
+            <button onClick={() => {
+                setAge((age) => ++age)
+            }}>增加一岁</button>
+
+            <button onClick={() => {
+                setTitle('hahah')
+            }}>修改名字</button>
+            <Child title={title} />
+        </div>
+    )
+}
+
+// memo 用于优化函数组件只有组件状态更新时才会重洗渲染
+const Child = memo((props) => {
+    console.log(1111)
+    return (
+        <div>我是{props.title}</div>
+    )
+})
+```
+
