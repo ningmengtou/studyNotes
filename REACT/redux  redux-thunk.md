@@ -119,3 +119,29 @@ root.render(
 );
 ```
 
+##### 自定义thunk中间件
+
+```react
+const store = createStore(reducers)
+
+// 自定义thunk中间件
+function thunkFn(store) {
+    // 保存原本的dispatch方法
+    const next = store.dispatch
+    // 自定义dispath接受action
+    function dispatchFn(action) {
+        if (typeof action === 'function') {
+            // action为函数则执行anction
+            action(store.dispatch, store.getState)
+        } else {
+            // 为对象则用原本的dispatch派发action
+            next(action)
+        }
+    }
+    // 修改原本dispatch的指向
+    store.dispatch = dispatchFn
+}
+
+thunkFn(store)
+```
+

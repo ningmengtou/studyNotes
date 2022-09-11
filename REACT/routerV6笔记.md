@@ -60,8 +60,6 @@
 
 ```
 
-
-
 > index用于嵌套路由，仅匹配父路径时，设置渲染的组件。
 >
 >  解决当嵌套路由有多个子路由但本身无法确认默认渲染哪个子路由的时候，可以增加index属性来指定默认路由。index路由和其他路由不同的地方是它没有path属性，他和父路由共享同一个路径。
@@ -82,8 +80,6 @@
 </Routes>
 ```
 
-
-
  (2) 官方推荐方案 2: 自定义 Redirect 组件
 
 ```jsx
@@ -98,18 +94,12 @@ function Redirect({to}){
 }
 ```
 
-
-
   (3) 404如何实现?
 
 ```jsx
 <Route path="/" element={<Redirect to="/film"/>}/>
 <Route path="*" element={<NotFound/>}/>
 ```
-
-
-
-
 
 ##### 3. 嵌套路由
 
@@ -123,8 +113,6 @@ function Redirect({to}){
 
 Film组件 <Outlet></Outlet>
 ```
-
-
 
 ##### 4. 声明式导航与编程式导航
 
@@ -152,8 +140,6 @@ setSearchParams({"id":2})
 
 ```
 
-
-
 ##### 5.动态路由
 
 ```jsx
@@ -167,8 +153,6 @@ navigate(`/detail/${id}`)
     
 const {id} = useParams()
 ```
-
-
 
 ##### 6.路由拦截
 
@@ -185,16 +169,12 @@ function AuthComponent({children}){
 }
 ```
 
-
-
 ##### 7.路由模式
 
 ```jsx
 import {HashRouter} from 'react-router-dom'
 import {BrowserRouter} from 'react-router-dom'
 ```
-
-
 
 ##### 8.withRouter / 类组件跳转方法
 
@@ -228,8 +208,6 @@ import {
   export default withRouter
 ```
 
-
-
 ##### 9. 路由懒加载
 
 ```jsx
@@ -243,8 +221,6 @@ const LazyLoad = (path) => {
 }
 
 ```
-
-
 
 ```jsx
 export default function MRouter() {
@@ -269,8 +245,6 @@ export default function MRouter() {
     )
 }
 ```
-
-
 
 ##### 10. useRoutes钩子配置路由
 
